@@ -1,9 +1,9 @@
 <template>
   <div class="home">
-    <h1>Bienvenue sur notre site !</h1>
+    <h1>Ville Antony</h1>
     <div v-if="!isLoggedIn">
       <button @click="showLoginForm">Se connecter</button>
-      <button @click="showMerchantLoginForm">Connexion Commerçant</button>
+      <button @click="showMerchantLoginForm">Inscription Commerçant</button>
       <button @click="showRegisterForm">S'inscrire</button>
     </div>
     <div v-else>
@@ -22,13 +22,15 @@
       </form>
     </div>
     <div v-if="showMerchantAccess">
-      <h2>Connexion Commerçant</h2>
+      <h2>Inscription Commerçant</h2>
       <form @submit.prevent="merchantLogin">
         <label for="username">Nom d'utilisateur Commerçant</label>
         <input type="text" id="username" v-model="merchantLoginForm.username">
+        <label for="email">Email Commerçant</label>
+        <input type="email" id="email" v-model="registerForm.email">
         <label for="password">Mot de passe Commerçant</label>
         <input type="password" id="password" v-model="merchantLoginForm.password">
-        <button type="submit">Se connecter</button>
+        <button type="submit">Inscription</button>
       </form>
     </div>
     <div v-if="showRegister">
