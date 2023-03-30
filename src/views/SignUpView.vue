@@ -1,6 +1,7 @@
 <template>
   <div class="page">
-    <img alt="Fid'Anthony logo" src="../assets/logo.png">
+    <img src="@/assets/top-wave.svg" alt="An orange wave" class="top">
+    <img class="logo" alt="Fid'Anthony logo" src="@/assets/logo.png">
     <h1>Découvrez <span>Fid'Anthony </span>!</h1>
     <form>
       <input type="text" name="email" placeholder="example@gmail.com">
@@ -12,6 +13,7 @@
       Déjà un compte ? <router-link to="login">Connectez vous</router-link><br>
       <router-link to="/">Je suis commerçant</router-link>
     </p>
+    <img src="@/assets/bottom-wave.svg" alt="An orange wave" class="bottom">
   </div>
 </template>
 
@@ -22,7 +24,22 @@ export default class SignUp extends Vue {}
 </script>
 
 <style scoped>
-img {
+img.top {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+}
+img.bottom {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  z-index: -1;
+  height: 100px;
+  transform: translateX(-50%) scaleX(1.5);
+}
+
+img.logo {
   margin-bottom: 20px;
 }
 
