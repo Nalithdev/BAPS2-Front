@@ -1,5 +1,5 @@
 <template>
-    <div id="navbar">
+    <div class="navbar">
       <RouterLink to="/feed">
         <HomeIcon :class="{ active: isActive('feed') }" :size="30"/>
       </RouterLink>
@@ -40,7 +40,7 @@ export default class Navbar extends Vue {
 </script>
 
 <style scoped>
-#navbar {
+.navbar {
   position: fixed;
   bottom: 0;
   left: 0;

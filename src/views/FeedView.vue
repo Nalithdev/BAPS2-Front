@@ -1,9 +1,15 @@
 <template>
-    <h1>Hello</h1>
+    <div>
+        <Searchbar/>
+    </div>
 </template>
 
 <script lang="ts">
-import { Vue } from 'vue-class-component';
+import { Vue, Options } from 'vue-class-component';
+import Searchbar from '@/components/SearchbarComponent.vue';
 
+@Options({
+  components: { Searchbar },
+})
 export default class FeedView extends Vue {}
 </script>

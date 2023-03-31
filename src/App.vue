@@ -1,5 +1,5 @@
 <template>
-  <router-view/>
+  <router-view :class="{ marginal: !['login', 'sign-up'].includes(page) }"/>
   <Navbar v-if="!['login', 'sign-up'].includes(page)"/>
 </template>
 
@@ -42,5 +42,9 @@ html, body, #app {
   src: local("Euclid Circular A Bold"),
     url(./fonts/EuclidCircular/EuclidCircularBold.ttf) format("truetype");
   font-weight: 700;
+}
+
+.marginal {
+  margin-top: 40px;
 }
 </style>
