@@ -50,7 +50,9 @@
       "ecmaVersion": 2020
     },
     "rules": {
-      "vuejs-accessibility/form-control-has-label": 0
+      "vuejs-accessibility/form-control-has-label": 0,
+      "max-classes-per-file": 0,
+      "lines-between-class-members": 0
     }
   },
   "browserslist": [

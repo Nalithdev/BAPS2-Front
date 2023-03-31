@@ -1,5 +1,5 @@
 <template>
-  <router-view :class="{ marginal: !['login', 'sign-up'].includes(page) }"/>
+  <router-view :class="{ view: true, marginal: !['login', 'sign-up'].includes(page) }"/>
   <Navbar v-if="!['login', 'sign-up'].includes(page)"/>
 </template>
 
@@ -28,7 +28,6 @@ export default class App extends Vue {
 html, body, #app {
   width: 100%;
   height: 100%;
-  overflow: hidden;
 }
 
 @font-face {
@@ -44,7 +43,13 @@ html, body, #app {
   font-weight: 700;
 }
 
+.view {
+  overflow: hidden;
+}
+
 .marginal {
-  margin-top: 40px;
+  margin-top: 30px;
+  overflow-y: scroll;
+  margin-bottom: 70px;
 }
 </style>
