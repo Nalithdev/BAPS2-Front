@@ -1,6 +1,21 @@
 <template>
   <router-view/>
+  <Navbar v-if="!['login', 'sign-up'].includes(page)"/>
 </template>
+
+<script lang="ts">
+import { Vue, Options } from 'vue-class-component';
+import Navbar from '@/components/NavbarComponent.vue';
+
+@Options({
+  components: { Navbar },
+})
+export default class App extends Vue {
+  get page(): string {
+    return (this.$route.name ?? this.$route.path.substring(1)).toString();
+  }
+}
+</script>
 
 <style>
 * {

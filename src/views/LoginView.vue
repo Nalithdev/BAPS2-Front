@@ -2,7 +2,7 @@
   <div class="page">
     <img alt="Fid'Anthony logo" src="../assets/logo.png">
     <h1>Bon retour <span>parmis nous </span>!</h1>
-    <form>
+    <form action="/feed">
       <input type="text" name="email" placeholder="example@gmail.com">
       <input type="password" name="password" placeholder="Mot de passe">
       <label for="rememberMe">
