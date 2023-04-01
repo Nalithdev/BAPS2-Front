@@ -1,18 +1,38 @@
 <template>
-  <router-view :class="{ view: true, marginal: !['login', 'sign-up'].includes(page) }"/>
+  <router-view :style="cssVars"
+    :class="{ view: true, marginal: !['login', 'sign-up'].includes(page) }"/>
   <Navbar v-if="!['login', 'sign-up'].includes(page)"/>
 </template>
 
 <script lang="ts">
 import { Vue, Options } from 'vue-class-component';
 import Navbar from '@/components/NavbarComponent.vue';
+import { StatusBarArea, Style } from 'capacitor-status-bar-area';
 
 @Options({
   components: { Navbar },
 })
 export default class App extends Vue {
+  public statusBarHeight = 24;
+
   get page(): string {
     return (this.$route.name ?? this.$route.path.substring(1)).toString();
+  }
+
+  get cssVars(): object {
+    return {
+      '--status-bar-height': `${this.statusBarHeight}px`,
+    };
+  }
+
+  mounted(): void {
+    StatusBarArea.setStyle({ style: Style.Light });
+
+    StatusBarArea.getHeight().then((info) => {
+      if (info.height) {
+        this.statusBarHeight = info.height;
+      }
+    });
   }
 }
 </script>
@@ -28,6 +48,8 @@ export default class App extends Vue {
 html, body, #app {
   width: 100%;
   height: 100%;
+  overflow: hidden;
+  background-color: #F9F9F9;
 }
 
 @font-face {
@@ -44,7 +66,10 @@ html, body, #app {
 }
 
 .view {
+  margin-top: var(--status-bar-height);
+  background-color: #FFF;
   overflow: hidden;
+  position: relative;
 }
 
 .marginal {

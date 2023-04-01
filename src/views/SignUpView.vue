@@ -28,13 +28,11 @@ img.top {
   position: absolute;
   top: 0;
   right: 0;
-  z-index: -1;
 }
 img.bottom {
   position: absolute;
   bottom: 0;
   left: 50%;
-  z-index: -1;
   height: 100px;
   transform: translateX(-50%) scaleX(1.5);
 }
