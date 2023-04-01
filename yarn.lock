@@ -980,6 +980,11 @@
   resolved "https://registry.yarnpkg.com/@capacitor/ios/-/ios-4.7.1.tgz#0a001941cdb42bbfdb877d5b3b94e94a66e20eb6"
   integrity sha512-8VPxVoqj8E8e4lwPphAZ6ZdOtfQNC+DfUNafjyF+Y/hWu7xMBaElDnCqfSIVKtLUoJud8Ke7yONgMTHnNE+C9A==
 
+"@capacitor/status-bar@^4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@capacitor/status-bar/-/status-bar-4.1.1.tgz#5b9a1acbe5efb30158e35be7a5ef7ffaaadaf804"
+  integrity sha512-3wosxMD1XuIFz88+c2GdVEHSJV6u7suOeKQjyWf3zf9eFr622Sg+udZqDbC0dtTWXw97BWyCjv3r1EYJw7XnIA==
+
 "@discoveryjs/json-ext@0.5.7":
   version "0.5.7"
   resolved "https://registry.npmmirror.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"

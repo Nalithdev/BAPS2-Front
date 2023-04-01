@@ -11,6 +11,7 @@
     "@capacitor/android": "^4.7.1",
     "@capacitor/core": "^4.7.1",
     "@capacitor/ios": "^4.7.1",
+    "@capacitor/status-bar": "^4.1.1",
     "core-js": "^3.8.3",
     "vue": "^3.2.13",
     "vue-class-component": "^8.0.0-0",
