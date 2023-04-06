@@ -3,8 +3,8 @@
     <img src="@/assets/top-wave.svg" alt="An orange wave" class="top">
     <img class="logo" alt="Fid'Anthony logo" src="@/assets/logo.png">
     <h1>Bon retour <span>parmis nous </span>!</h1>
-    <form action="/feed">
-      <input type="text" name="email" placeholder="example@gmail.com">
+    <form action="">
+      <input type="mail" name="email" placeholder="example@gmail.com">
       <input type="password" name="password" placeholder="Mot de passe">
       <label for="rememberMe">
         <input type="checkbox" name="rememberMe" id="rememberMe">
@@ -22,7 +22,37 @@
 <script lang="ts">
 import { Vue } from 'vue-class-component';
 
-export default class LogIn extends Vue {}
+export default class LogIn extends Vue {
+  mounted() {
+    const form: HTMLFormElement|null = document.querySelector('form');
+    if (!form) return;
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const theEmail = (form.elements[0] as HTMLInputElement).value;
+      const thePassword = (form.elements[1] as HTMLInputElement).value;
+
+      fetch(
+        'https://main-bvxea6i-rlacwuuwytvt2.fr-4.platformsh.site/api/login',
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            email: theEmail,
+            password: thePassword,
+          }),
+        },
+      )
+        .then((r) => r.json()).then((data) => {
+          // savoir si ça a marché
+          if (data.success === false) {
+            console.log(data);
+          } else {
+            this.$store.state.token = data.token.tokenId;
+            console.log(this.$store.state);
+          }
+        });
+    });
+  }
+}
 </script>
 
 <style scoped>
@@ -118,8 +148,8 @@ button::after {
   background: linear-gradient(to right, #fb3d03, #05306e);
   padding: 2px;
   mask:
-     linear-gradient(#fff 0 0) content-box,
-     linear-gradient(#fff 0 0);
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   mask-composite: exclude;
 }
 

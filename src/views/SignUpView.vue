@@ -5,6 +5,8 @@
     <h1>Découvrez <span>Fid'Anthony </span>!</h1>
     <form action="/feed">
       <input type="text" name="email" placeholder="example@gmail.com">
+      <input type="text" name="prenom" placeholder="Prenom">
+      <input type="text" name="nom" placeholder="Nom">
       <input type="password" name="password" placeholder="Mot de passe">
       <input type="password" name="password-confirm" placeholder="Mot de passe">
       <button type="submit">S'inscrire</button>
