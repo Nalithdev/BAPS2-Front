@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import SignUp from '@/views/SignUpView.vue';
 import LogIn from '@/views/LoginView.vue';
 import Feed from '@/views/FeedView.vue';
+import Shop from '@/views/ShopView.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -18,6 +19,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/feed',
     name: 'feed',
     component: Feed,
+  },
+  {
+    path: '/shop',
+    name: 'shop',
+    component: Shop,
   },
 ];
 

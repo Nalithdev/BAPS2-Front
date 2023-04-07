@@ -1,6 +1,8 @@
-<template>
-  <router-view :style="cssVars"
-    :class="{ view: true, marginal: !['login', 'sign-up'].includes(page) }"/>
+<template :style="cssVars">
+  <router-view :class="{
+    view: true,
+    marginal: !['login', 'sign-up'].includes(page)
+  }"/>
   <Navbar v-if="!['login', 'sign-up'].includes(page)"/>
 </template>
 
@@ -22,6 +24,7 @@ export default class App extends Vue {
   get cssVars(): object {
     return {
       '--status-bar-height': `${this.statusBarHeight}px`,
+      '--overflow-y': ['login', 'sign-up'].includes(this.page) ? 'hidden' : 'scroll',
     };
   }
 
@@ -48,8 +51,8 @@ export default class App extends Vue {
 html, body, #app {
   width: 100%;
   height: 100%;
-  overflow: hidden;
   background-color: #F9F9F9;
+  overflow-y: var(--overflow-y);
 }
 
 @font-face {
@@ -73,8 +76,8 @@ html, body, #app {
 }
 
 .marginal {
+  padding-top: 20px;
   margin-top: 30px;
-  overflow-y: scroll;
   margin-bottom: 70px;
 }
 </style>

@@ -24,12 +24,5 @@ import Status from '@/components/StatusComponent.vue';
 @Options({
   components: { Searchbar, Status },
 })
-export default class FeedView extends Vue {}
+export default class Feed extends Vue {}
 </script>
-
-<style>
-.feed {
-    height: max-content;
-    overflow-y: scroll;
-}
-</style>
