@@ -50,13 +50,15 @@ export default class Navbar extends Vue {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  padding-top: 20px;
-  padding-bottom: 15px;
   background-color: #F9F9F9;
 }
 
 .material-design-icon {
   color: black;
+  padding-top: 20px;
+  padding-bottom: 15px;
+  padding-right: 20px;
+  padding-left: 20px;
 }
 
 .material-design-icon.active {
