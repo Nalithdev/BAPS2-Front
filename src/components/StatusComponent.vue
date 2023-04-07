@@ -1,5 +1,6 @@
 <template>
-    <div class="status">
+    <RouterLink :to="`/shops/${id}`" class="link">
+      <div class="status">
         <div class="header">
             <img :src="'/uploads/' + logo" :alt="name + ' Logo'" class="status-logo">
             <div>
@@ -11,11 +12,13 @@
           <slot></slot>
         </div>
         <img v-if="image" :src="'/uploads/' + image" :alt="name + ' status'" class="status-image">
-    </div>
+      </div>
+    </RouterLink>
 </template>
 
 <script lang="ts" scoped>
-import { Vue, prop } from 'vue-class-component';
+import { Vue, prop, Options } from 'vue-class-component';
+import { RouterLink } from 'vue-router';
 
 export class Props {
   name: string = prop({ required: true });
@@ -24,10 +27,19 @@ export class Props {
   image?: string = prop({ required: false });
 }
 
-export default class Status extends Vue.with(Props) {}
+@Options({
+  components: { RouterLink },
+})
+export default class Status extends Vue.with(Props) {
+  public id = 1;
+}
 </script>
 
 <style>
+.link {
+  text-decoration: inherit;
+}
+
 .status {
   margin: 20px;
 }

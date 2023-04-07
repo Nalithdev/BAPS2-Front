@@ -21,7 +21,7 @@ const routes: Array<RouteRecordRaw> = [
     component: Feed,
   },
   {
-    path: '/shop',
+    path: '/shops/:id',
     name: 'shop',
     component: Shop,
   },
