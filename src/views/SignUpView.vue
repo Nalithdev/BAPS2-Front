@@ -15,7 +15,6 @@
       Déjà un compte ? <router-link to="login">Connectez vous</router-link><br>
       <router-link to="/">Je suis commerçant</router-link>
     </p>
-    <img src="@/assets/bottom-wave.svg" alt="An orange wave" class="bottom">
   </div>
 </template>
 
@@ -30,13 +29,7 @@ img.top {
   position: absolute;
   top: 0;
   right: 0;
-}
-img.bottom {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  height: 100px;
-  transform: translateX(-50%) scaleX(1.5);
+  z-index: -1;
 }
 
 img.logo {
@@ -51,6 +44,7 @@ img.logo {
   gap: 20px;
   height: 100%;
   padding: 80px 0;
+  z-index: 1;
 }
 
 h1 {
