@@ -1,4 +1,5 @@
 <template :style="cssVars">
+  <div :style="cssVars" class="statusbar"></div>
   <router-view :class="{
     view: true,
     marginal: !['login', 'sign-up'].includes(page)
@@ -51,7 +52,6 @@ export default class App extends Vue {
 html, body, #app {
   width: 100%;
   height: 100%;
-  background-color: #F9F9F9;
   overflow-y: var(--overflow-y);
 }
 
@@ -79,5 +79,16 @@ html, body, #app {
   padding-top: 20px;
   margin-top: 30px;
   margin-bottom: 70px;
+}
+
+.statusbar {
+  position: fixed;
+  display: block;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--status-bar-height);
+  background-color: #F9F9F9;
 }
 </style>
