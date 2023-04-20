@@ -4,7 +4,7 @@
       <ChevronLeftIcon @click="$router.go(-1)" fillColor="#fff" size="30"/>
       <img :src="`/uploads/${image}`" :alt="name" class="background">
       <div class="gradient"></div>
-      <h1>{{ name }} <span class="stars">⭐️⭐️⭐️⭐️</span></h1>
+      <h1>{{ name }} <div class="stars" :style="cssVars"></div></h1>
       <h4>{{ adress }}</h4>
       <ArrowRightTopBoldIcon class="arrow" fillColor="#fff"/>
     </div>
@@ -56,6 +56,12 @@ export default class Shop extends Vue {
     booked: i % 3 === 2,
     image: 'product1.png',
   }));
+
+  get cssVars() {
+    return {
+      '--stars': this.stars,
+    };
+  }
 }
 </script>
 
@@ -157,5 +163,20 @@ export default class Shop extends Vue {
 
 .product.booked .gradient {
   background-image: linear-gradient(to bottom, #FF470F88 0%, #FF470F88 70%, #FF470F 70%);
+}
+
+.stars {
+  font-size: 20px;
+  line-height: 1;
+  font-family: sans-serif;
+  display: inline-block;
+  --limit: calc(var(--stars) * 20%);
+}
+.stars::before {
+  letter-spacing: 3px;
+  content: '★★★★★';
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(90deg, #fb1 var(--limit), #fff var(--limit));
+  background-clip: text;
 }
 </style>
