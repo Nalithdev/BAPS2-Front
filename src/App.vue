@@ -3,7 +3,7 @@
   <router-view :class="{
     view: true,
     marginal: !['login', 'sign-up'].includes(page)
-  }"/>
+  }" :key="$route.fullPath"/>
   <Navbar v-if="!['login', 'sign-up'].includes(page)"/>
 </template>
 

@@ -53,6 +53,7 @@
     },
     "rules": {
       "vuejs-accessibility/form-control-has-label": 0,
+      "vuejs-accessibility/click-events-have-key-events": 0,
       "max-classes-per-file": 0,
       "lines-between-class-members": 0,
       "class-methods-use-this": 0

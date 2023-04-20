@@ -3,8 +3,8 @@
       <RouterLink to="/feed">
         <HomeIcon :class="{ active: isActive('feed') }" :size="30"/>
       </RouterLink>
-      <RouterLink to="/shop">
-        <CartIcon :class="{ active: isActive('shop') }" :size="30"/>
+      <RouterLink to="/shops">
+        <CartIcon :class="{ active: isActive('shops') }" :size="30"/>
       </RouterLink>
       <RouterLink to="/account">
         <AccountIcon :class="{ active: isActive('account') }" :size="30"/>

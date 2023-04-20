@@ -2,10 +2,10 @@
   <div class="shop">
     <div class="head">
       <ChevronLeftIcon @click="$router.go(-1)" fillColor="#fff" size="30"/>
-      <img :src="`/uploads/${image}`" :alt="name" class="background">
+      <img :src="`/uploads/${shop.banner}`" :alt="shop.name" class="background">
       <div class="gradient"></div>
-      <h1>{{ name }} <div class="stars" :style="cssVars"></div></h1>
-      <h4>{{ adress }}</h4>
+      <h1>{{ shop.name }} <div class="stars" :style="cssVars"></div></h1>
+      <h4>{{ shop.adress }}</h4>
       <ArrowRightTopBoldIcon class="arrow" fillColor="#fff"/>
     </div>
     <div class="body">
@@ -33,6 +33,9 @@
       </div>
       <div class="proximity">
         <h3>Activités à proximité</h3>
+        <div class="shops">
+            <ShopMiniature v-for="i in 5" :key="i" :id="i + 1" />
+        </div>
       </div>
     </div>
   </div>
@@ -43,15 +46,23 @@ import { Vue, Options } from 'vue-class-component';
 import ChevronLeftIcon from 'vue-material-design-icons/ChevronLeft.vue';
 import ArrowRightTopBoldIcon from 'vue-material-design-icons/ArrowRightTopBold.vue';
 import { RouterLink } from 'vue-router';
+import ShopMiniature from '@/components/ShopMiniatureComponent.vue';
+
+window.scrollTo({ top: 0 });
 
 @Options({
-  components: { ChevronLeftIcon, ArrowRightTopBoldIcon, RouterLink },
+  components: {
+    ChevronLeftIcon,
+    ArrowRightTopBoldIcon,
+    RouterLink,
+    ShopMiniature,
+  },
 })
 export default class Shop extends Vue {
-  public name = 'A la bonne Franco';
-  public stars = 4;
-  public adress = '12 Rue du commerce, Antony';
-  public image = 'status1.png';
+  get shop() {
+    return this.$store.state.shops[this.$route.params.id as unknown as number - 1];
+  }
+
   public products = Array.from({ length: 3 }, (__, i) => ({
     booked: i % 3 === 2,
     image: 'product1.png',
@@ -59,13 +70,27 @@ export default class Shop extends Vue {
 
   get cssVars() {
     return {
-      '--stars': this.stars,
+      '--stars': this.shop.stars,
     };
   }
 }
 </script>
 
 <style scoped>
+.shop {
+  animation: push .3s ease-out 1 forwards;
+}
+
+@keyframes push {
+  from {
+    margin-top: 100vh;
+  }
+
+  to {
+    margin-top: 0;
+  }
+}
+
 .head {
   overflow: hidden;
   border-top-right-radius: 30px;
@@ -178,5 +203,9 @@ export default class Shop extends Vue {
   -webkit-text-fill-color: transparent;
   background: linear-gradient(90deg, #fb1 var(--limit), #fff var(--limit));
   background-clip: text;
+}
+
+.shops {
+  margin: 0 -20px 20px -20px;
 }
 </style>
