@@ -3,7 +3,7 @@
         <Searchbar/>
         <div class="feed">
             <Status v-for="i in 10" :key="i" name="A la bonne Franco"
-                kind="Boulangerie" logo="logo1.png" image="status1.png">
+                kind="Boulangerie" logo="shop1.png" image="status1.png">
                 <p>
                     Dans la boulangerie "A la bonne Franco", nous proposons des spécialités
                     Espagnoles tout à fait goûteuses! Nous sommes profondément écologiques
