@@ -6,8 +6,8 @@
       <RouterLink to="/shops">
         <CartIcon :class="{ active: isActive('shops') }" :size="30"/>
       </RouterLink>
-      <RouterLink to="/account">
-        <AccountIcon :class="{ active: isActive('account') }" :size="30"/>
+      <RouterLink to="/profile">
+        <AccountIcon :class="{ active: isActive('profile') }" :size="30"/>
       </RouterLink>
       <MapMarkerIcon :size="30"/>
     </div>

@@ -4,6 +4,7 @@ import LogIn from '@/views/LoginView.vue';
 import Feed from '@/views/FeedView.vue';
 import Shop from '@/views/ShopView.vue';
 import Shops from '@/views/ShopsView.vue';
+import Profile from '@/views/ProfileView.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -30,6 +31,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/shops/:id',
     name: 'shop',
     component: Shop,
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: Profile,
   },
 ];
 
