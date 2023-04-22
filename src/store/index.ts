@@ -3,6 +3,7 @@ import { createStore } from 'vuex';
 export default createStore({
   state: {
     token: null,
+    server_url: 'https://main-bvxea6i-rlacwuuwytvt2.fr-4.platformsh.site',
     shops: [
       {
         id: 1,

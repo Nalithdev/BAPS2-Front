@@ -3,7 +3,7 @@
     <img src="@/assets/top-wave.svg" alt="An orange wave" class="top">
     <img class="logo" alt="Fid'Anthony logo" src="@/assets/logo.png">
     <h1>Découvrez <span>Fid'Anthony </span>!</h1>
-    <form action="/feed">
+    <form action="">
       <input type="text" name="email" placeholder="example@gmail.com">
       <input type="text" name="prenom" placeholder="Prenom">
       <input type="text" name="nom" placeholder="Nom">
@@ -21,7 +21,37 @@
 <script lang="ts">
 import { Vue } from 'vue-class-component';
 
-export default class SignUp extends Vue {}
+export default class SignUp extends Vue {
+  mounted() {
+    document.title = 'Fid\'Anthony - Inscription';
+    const form : HTMLFormElement|null = document.querySelector('form');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // convert form data to json with typescript
+        const formData = new FormData(form);
+        fetch(`${this.$store.state.server_url}/api/register`, {
+          method: 'POST',
+          body: JSON.stringify({
+            email: formData.get('email'),
+            firstname: formData.get('prenom'),
+            lastname: formData.get('nom'),
+            password: formData.get('password'),
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success === true) {
+              this.$router.push('/login');
+            } else {
+              // eslint-disable-next-line no-alert
+              alert(data.message);
+            }
+          });
+      });
+    }
+  }
+}
 </script>
 
 <style scoped>
