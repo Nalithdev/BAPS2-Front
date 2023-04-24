@@ -88,7 +88,6 @@ html, body, #app {
   top: 0;
   left: 0;
   right: 0;
-  height: var(--status-bar-height);
   background-color: #F9F9F9;
 }
 </style>
