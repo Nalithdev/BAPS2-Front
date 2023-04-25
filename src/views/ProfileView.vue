@@ -4,8 +4,8 @@
         <div class="account">
             <img src="/uploads/user1.jpg" alt="User Profile Picture">
             <div class="right">
-                <input type="text" class="name" placeholder="Exemple">
-                <input type="text" class="mail" placeholder="exemple@mail.com">
+                <input type="text" class="name" name="pseudo" placeholder="Exemple">
+                <input type="text" class="mail" name="email" placeholder="exemple@mail.com">
                 <div class="points">
                     <div class="circle"></div>
                     <p>1000 pts</p>

@@ -21,7 +21,33 @@
 <script lang="ts">
 import { Vue } from 'vue-class-component';
 
-export default class SignUp extends Vue {}
+export default class SignUp extends Vue {
+  mounted() {
+    const form = document.querySelector('form');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        fetch('https://main-bvxea6i-rlacwuuwytvt2.fr-4.platformsh.site/api/register', {
+          method: 'POST',
+          body: JSON.stringify({
+            email: formData.get('email'),
+            password: formData.get('password'),
+            firstname: formData.get('prenom'),
+            lastname: formData.get('nom'),
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.status === 'success') {
+              this.$router.push('/feed');
+            }
+          });
+      });
+    }
+  }
+}
 </script>
 
 <style scoped>
