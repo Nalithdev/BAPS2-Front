@@ -48,8 +48,6 @@ import ArrowRightTopBoldIcon from 'vue-material-design-icons/ArrowRightTopBold.v
 import { RouterLink } from 'vue-router';
 import ShopMiniature from '@/components/ShopMiniatureComponent.vue';
 
-window.scrollTo({ top: 0 });
-
 @Options({
   components: {
     ChevronLeftIcon,

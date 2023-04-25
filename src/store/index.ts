@@ -3,11 +3,33 @@ import { createStore } from 'vuex';
 export default createStore({
   state: {
     token: null,
+    shopKinds: [
+      {
+        name: 'Artisanat',
+        id: 1,
+      },
+      {
+        name: 'Boucherie',
+        id: 2,
+      },
+      {
+        name: 'Chocolaterie',
+        id: 3,
+      },
+      {
+        name: 'Fripes',
+        id: 4,
+      },
+      {
+        name: 'Opticien',
+        id: 5,
+      },
+    ],
     shops: [
       {
         id: 1,
         name: 'Age de Bronze',
-        kind: 'Artisanat',
+        kindId: 1,
         adress: '46 Avenue La Chaise',
         image: 'shop1.png',
         stars: 4,
@@ -16,7 +38,7 @@ export default createStore({
       {
         id: 2,
         name: 'Borel',
-        kind: 'Boucherie',
+        kindId: 2,
         adress: '34 Rue de la Bourgade',
         image: 'shop2.png',
         stars: 3,
@@ -25,7 +47,7 @@ export default createStore({
       {
         id: 3,
         name: 'Jeff de Bruges',
-        kind: 'Chocolaterie',
+        kindId: 3,
         adress: '13 Rue Pagnole',
         image: 'shop3.png',
         stars: 5,
@@ -34,7 +56,7 @@ export default createStore({
       {
         id: 4,
         name: 'Celina',
-        kind: 'Fripes',
+        kindId: 4,
         adress: '20 Rue Pagnole',
         image: 'shop4.png',
         stars: 2,
@@ -43,7 +65,7 @@ export default createStore({
       {
         id: 5,
         name: 'Krys',
-        kind: 'Opticien',
+        kindId: 5,
         adress: '14 Rue de la Bourgade',
         image: 'shop5.png',
         stars: 3,
@@ -52,7 +74,7 @@ export default createStore({
       {
         id: 6,
         name: 'Antony Moradon',
-        kind: 'Fripes',
+        kindId: 4,
         adress: '12 Rue César',
         image: 'shop6.png',
         stars: 4,
