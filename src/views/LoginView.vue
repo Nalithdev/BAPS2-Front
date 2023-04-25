@@ -28,16 +28,15 @@ export default class LogIn extends Vue {
     if (!form) return;
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const theEmail = (form.elements[0] as HTMLInputElement).value;
-      const thePassword = (form.elements[1] as HTMLInputElement).value;
+      const formData = new FormData(form);
 
       fetch(
         'https://main-bvxea6i-rlacwuuwytvt2.fr-4.platformsh.site/api/login',
         {
           method: 'POST',
           body: JSON.stringify({
-            email: theEmail,
-            password: thePassword,
+            email: formData.get('email'),
+            password: formData.get('password'),
           }),
         },
       )
@@ -47,7 +46,9 @@ export default class LogIn extends Vue {
             console.log(data);
           } else {
             this.$store.state.token = data.token.tokenId;
-            console.log(this.$store.state);
+            console.log(data);
+            console.log(this.$store.state.token);
+            this.$router.push('/feed');
           }
         });
     });
