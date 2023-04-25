@@ -16,6 +16,7 @@ import ShopMiniature from '@/components/ShopMiniatureComponent.vue';
   components: { Searchbar, ShopMiniature },
 })
 export default class Shops extends Vue {}
+
 </script>
 
 <style>
