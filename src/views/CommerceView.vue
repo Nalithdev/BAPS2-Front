@@ -90,7 +90,7 @@ export default class Feed extends Vue {
   }
 }
 </script>
-<style>
+<style scoped>
   .commerce {
     display: flex;
     justify-content: space-between;

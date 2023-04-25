@@ -40,6 +40,7 @@ export default class Navbar extends Vue {
 
   mounted() {
     const profileBtn = document.getElementById('profile-btn');
+    console.log(profileBtn);
     if (profileBtn) {
       profileBtn.addEventListener('mousedown', this.handlePressStart);
       profileBtn.addEventListener('mouseup', this.handlePressEnd);
