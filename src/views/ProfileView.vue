@@ -25,8 +25,16 @@ import ShopMiniature from '@/components/ShopMiniatureComponent.vue';
 import MenuIcon from 'vue-material-design-icons/Menu.vue';
 import FilterVariantIcon from 'vue-material-design-icons/FilterVariant.vue';
 
-@Options({ components: { ShopMiniature, MenuIcon, FilterVariantIcon } })
-export default class Profile extends Vue {}
+@Options({
+  components: { ShopMiniature, MenuIcon, FilterVariantIcon },
+})
+export default class Profile extends Vue {
+  showParameters = false;
+
+  toggleParameters() {
+    this.showParameters = !this.showParameters;
+  }
+}
 </script>
 
 <style>
@@ -49,6 +57,10 @@ h2.favorites {
     align-items: center;
     justify-content: space-between;
     margin: 15px;
+}
+
+.profile {
+    margin-bottom: 30px; /* Ajustez cette valeur en fonction de l'espace souhaité */
 }
 
 .account img {
