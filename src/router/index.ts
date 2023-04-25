@@ -5,6 +5,7 @@ import Feed from '@/views/FeedView.vue';
 import Shop from '@/views/ShopView.vue';
 import Shops from '@/views/ShopsView.vue';
 import Profile from '@/views/ProfileView.vue';
+import Commerce from '@/views/CommerceView.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -36,6 +37,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/profile',
     name: 'profile',
     component: Profile,
+  },
+  {
+    path: '/commerce-view',
+    name: 'commerce-view',
+    component: Commerce,
   },
 ];
 
