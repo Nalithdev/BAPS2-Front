@@ -46,7 +46,7 @@ export default class LogIn extends Vue {
             console.log(data);
           } else {
             this.$store.state.token = data.token.tokenId;
-            console.log(data);
+            this.$store.state.i = data.id;
             console.log(this.$store.state.token);
             this.$router.push('/feed');
           }
