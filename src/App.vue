@@ -31,7 +31,6 @@ export default class App extends Vue {
 
   mounted(): void {
     StatusBarArea.setStyle({ style: Style.Light });
-
     StatusBarArea.getHeight().then((info) => {
       if (info.height) {
         this.statusBarHeight = info.height;
