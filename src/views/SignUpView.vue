@@ -2,7 +2,7 @@
   <div class="page">
     <img src="@/assets/top-wave.svg" alt="An orange wave" class="top">
     <img class="logo" alt="Fid'Anthony logo" src="@/assets/logo.png">
-    <h1>Découvrez <span>Fid'Anthony </span>!</h1>
+    <h1>Découvrez  <span> Fid'Antony </span>!</h1>
     <form action="/feed">
       <input type="text" name="email" placeholder="example@gmail.com">
       <input type="text" name="prenom" placeholder="Prenom">
