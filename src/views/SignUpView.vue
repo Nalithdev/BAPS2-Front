@@ -9,11 +9,15 @@
       <input type="text" name="nom" placeholder="Nom">
       <input type="password" name="password" placeholder="Mot de passe">
       <input type="password" name="password-confirm" placeholder="Mot de passe">
+      <input type="text" name="siren" placeholder="N° de SIREN" v-if="merchant" >
+      <label for="merchant">
+        <input type="checkbox" name="merchant" id="merchant" v-model="merchant">
+        Je suis commerçant
+      </label>
       <button type="submit">S'inscrire</button>
     </form>
     <p>
-      Déjà un compte ? <router-link to="login">Connectez vous</router-link><br>
-      <router-link to="/">Je suis commerçant</router-link>
+      Déjà un compte ? <router-link to="login">Connectez vous</router-link>
     </p>
   </div>
 </template>
@@ -22,6 +26,8 @@
 import { Vue } from 'vue-class-component';
 
 export default class SignUp extends Vue {
+  merchant = false;
+
   mounted() {
     const form = document.querySelector('form');
     if (form) {
