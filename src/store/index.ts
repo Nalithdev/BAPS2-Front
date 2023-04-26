@@ -24,6 +24,22 @@ export default createStore({
         name: 'Opticien',
         id: 5,
       },
+      {
+        name: 'Epicerie',
+        id: 6,
+      },
+      {
+        name: 'Fleuriste',
+        id: 7,
+      },
+      {
+        name: 'Electronique',
+        id: 8,
+      },
+      {
+        name: 'Sante',
+        id: 9,
+      },
     ],
     shops: [
       {
