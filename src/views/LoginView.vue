@@ -2,7 +2,7 @@
   <div class="page">
     <img src="@/assets/top-wave.svg" alt="An orange wave" class="top">
     <img class="logo" alt="Fid'Anthony logo" src="@/assets/logo.png">
-    <h1>Bon retour <span> parmis nous</span>!</h1>
+    <h1>Bon retour &nbsp;<span> parmis nous</span>!</h1>
     <form action="">
       <input type="mail" name="email" placeholder="example@gmail.com">
       <input type="password" name="password" placeholder="Mot de passe">
@@ -13,10 +13,8 @@
       <button type="submit">Connexion</button>
     </form>
     <p>
-      Pas de compte ?
-      <router-link to="/">Inscrivez vous</router-link>
+      Pas de compte ? <router-link to="/">Inscrivez vous</router-link>
     </p>
-    <img src="@/assets/bottom-wave.svg" alt="An orange wave" class="bottom">
   </div>
 </template>
 
@@ -25,7 +23,7 @@ import { Vue } from 'vue-class-component';
 
 export default class LogIn extends Vue {
   mounted() {
-    const form: HTMLFormElement | null = document.querySelector('form');
+    const form: HTMLFormElement|null = document.querySelector('form');
     if (!form) return;
     form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -41,8 +39,7 @@ export default class LogIn extends Vue {
           }),
         },
       )
-        .then((r) => r.json())
-        .then((data) => {
+        .then((r) => r.json()).then((data) => {
           // savoir si ça a marché
           if (data.success === false) {
             console.log(data);
@@ -64,7 +61,6 @@ img.top {
   top: 0;
   right: 0;
 }
-
 img.bottom {
   position: absolute;
   bottom: 0;
@@ -151,8 +147,9 @@ button::after {
   border-radius: 20px;
   background: linear-gradient(to right, #fb3d03, #05306e);
   padding: 2px;
-  mask: linear-gradient(#fff 0 0) content-box,
-  linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   mask-composite: exclude;
 }
 
