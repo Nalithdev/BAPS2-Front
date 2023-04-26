@@ -1,22 +1,44 @@
 <template :style="cssVars">
   <div :style="cssVars" class="statusbar"></div>
-  <router-view :class="{
-    view: true,
-    marginal: !['login', 'sign-up'].includes(page)
-  }" :key="$route.fullPath"/>
-  <Navbar v-if="!['login', 'sign-up'].includes(page)"/>
+  <router-view
+    :class="{
+      view: true,
+      marginal: !['login', 'sign-up'].includes(page),
+    }"
+    :key="$route.fullPath"
+  />
+  <Navbar v-if="!['login', 'sign-up'].includes(page)" />
+  <QrCodeComponent/>
 </template>
 
 <script lang="ts">
+/* eslint-disable import/no-extraneous-dependencies */
 import { Vue, Options } from 'vue-class-component';
+/* eslint-disable import/no-extraneous-dependencies */
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+/* eslint-disable import/no-extraneous-dependencies */
+import { library } from '@fortawesome/fontawesome-svg-core';
+/* eslint-disable import/no-extraneous-dependencies */
+import {
+  faQrcode,
+  faCamera,
+  faCameraRetro,
+  faPlus,
+}
+  from '@fortawesome/free-solid-svg-icons';
+/* eslint-disable import/no-extraneous-dependencies */
 import Navbar from '@/components/NavbarComponent.vue';
-import { StatusBarArea, Style } from 'capacitor-status-bar-area';
+/* eslint-disable import/no-extraneous-dependencies */
+import QrCodeComponent from '@/components/QrCodeComponent.vue';
+
+library.add(faQrcode, faCamera, faCameraRetro, faPlus);
 
 @Options({
-  components: { Navbar },
+  components: { Navbar, QrCodeComponent, FontAwesomeIcon },
 })
 export default class App extends Vue {
   public statusBarHeight = 24;
+  public showMenu = false;
 
   get page(): string {
     return (this.$route.name ?? this.$route.path.substring(1)).toString();
@@ -25,18 +47,24 @@ export default class App extends Vue {
   get cssVars(): object {
     return {
       '--status-bar-height': `${this.statusBarHeight}px`,
-      '--overflow-y': ['login', 'sign-up'].includes(this.page) ? 'hidden' : 'scroll',
+      '--overflow-y': ['login', 'sign-up'].includes(this.page)
+        ? 'hidden'
+        : 'scroll',
     };
   }
 
-  mounted(): void {
-    StatusBarArea.setStyle({ style: Style.Light });
+  openScannerAction() {
+    // Mettez votre autre action ici
+  }
 
-    StatusBarArea.getHeight().then((info) => {
-      if (info.height) {
-        this.statusBarHeight = info.height;
-      }
-    });
+  createPublication() {
+    // Mettez votre autre action ici
+    this.showMenu = false;
+  }
+
+  showUserQrCode() {
+    // Mettez votre troisième action ici
+    this.showMenu = false;
   }
 }
 </script>
@@ -89,5 +117,27 @@ html, body, #app {
   left: 0;
   right: 0;
   background-color: #F9F9F9;
+}
+.floating-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 80px;
+  right: 30px;
+  font-size: 32px;
+  line-height: 1;
+  background-color: #0517B9;
+  color: #ffffff;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 24px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.floating-button:hover {
+  background-color: #FE7B52;
 }
 </style>
