@@ -148,4 +148,14 @@ button::after {
      linear-gradient(#fff 0 0);
   mask-composite: exclude;
 }
+
+label {
+  width: 100%;
+  color: #3B434F;
+  font-size: 12px;
+}
+
+input[type="checkbox"] {
+  margin-right: 2px;
+}
 </style>
