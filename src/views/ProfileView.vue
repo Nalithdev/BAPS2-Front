@@ -53,7 +53,6 @@ export default class SignUp extends Vue {
         firstname: formData.get('firstname'),
         email: formData.get('email'),
       };
-      console.log(body);
       fetch(
         url,
         {

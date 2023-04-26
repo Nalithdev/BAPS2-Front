@@ -15,7 +15,23 @@ import ShopMiniature from '@/components/ShopMiniatureComponent.vue';
 @Options({
   components: { Searchbar, ShopMiniature },
 })
-export default class Shops extends Vue {}
+export default class Shops extends Vue {
+  mounted() {
+    const url = 'https://main-bvxea6i-rlacwuuwytvt2.fr-4.platformsh.site/api/shops';
+    const shops = new FormData();
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Token: this.$store.state.token,
+      },
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        console.log(data);
+      });
+  }
+}
 
 </script>
 

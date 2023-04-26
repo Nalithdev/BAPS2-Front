@@ -1,5 +1,5 @@
 <template>
-    <RouterLink :to="`/shops/${id}`" class="link">
+    <RouterLink :to="`https://main-bvxea6i-rlacwuuwytvt2.fr-4.platformsh.site/api/shop/${id}`" class="link">
       <div class="shop-miniature">
         <img :src="'/uploads/' + shop.image" :alt="shop.name + ' Logo'">
         <div class="right">
