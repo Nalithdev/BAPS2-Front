@@ -82,7 +82,7 @@ h2.favorites {
 
 .account .right {
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     justify-content: center;
     flex-direction: column;
     gap: 10px;
