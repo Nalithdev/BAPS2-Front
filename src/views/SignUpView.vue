@@ -8,7 +8,7 @@
       <input type="text" name="prenom" placeholder="Prenom">
       <input type="text" name="nom" placeholder="Nom">
       <input type="password" name="password" placeholder="Mot de passe">
-      <input type="password" name="password-confirm" placeholder="Mot de passe">
+      <input type="password" name="password-confirm" placeholder="Confirmer mot de passe">
       <input type="text" name="siren" placeholder="N° de SIREN" v-if="merchant" >
       <label for="merchant">
         <input type="checkbox" name="merchant" id="merchant" v-model="merchant">
