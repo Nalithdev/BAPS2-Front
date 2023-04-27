@@ -25,6 +25,15 @@
           <button class="close-button" @click="openScanner = false">Fermer</button>
         </div>
       </div>
+      <div class="modal-point">
+        <h3>Nombres de Points</h3>
+        <div class="price-control">
+          <button @click="decreasePrice" class="price-button">-</button>
+          <input type="number" placeholder="Prix" v-model="price">
+          <button @click="increasePrice" class="price-button">+</button>
+        </div>
+        <button>Créditer</button>
+      </div>
     </div>
     <div class="modal qrcode-modal" v-if="showQrCode">
       <div class="qrcode-modal-content">
@@ -51,6 +60,7 @@ export default {
       qrScanner: null,
       showQrCode: false,
       qrCodeInstance: null,
+      price: 0,
     };
   },
   methods: {
@@ -62,7 +72,7 @@ export default {
       this.$nextTick(() => {
         const { token } = this.$store.state;
         const img = this.$el.querySelector('#qrcode');
-        QRCode.toDataURL(token, { errorCorrectionLevel: 'H' }, (err, url) => {
+        QRCode.toDataURL('some text', { errorCorrectionLevel: 'H' }, (err, url) => {
           if (url) img.src = url;
         });
       });
@@ -80,25 +90,20 @@ export default {
               if (result && result.codeResult && result.codeResult.code) {
                 // Do something with the result
               }
-
-              const url = `https://main-bvxea6i-rlacwuuwytvt2.fr-4.platformsh.site/api/getuser/${result}`; // URL de l'API
-              fetch(url, {
-                method: 'GET',
-                headers: {
-                  'Content-Type': 'application/json',
-                  Token: this.$store.state.token,
-                },
-              })
-                .then((r) => r.json())
-                .then((data) => {
-                  console.log(data);
-                });
             });
             this.qrScanner.start();
           }
         });
       } else {
         this.qrScanner.start();
+      }
+    },
+    increasePrice() {
+      this.price += 1;
+    },
+    decreasePrice() {
+      if (this.price > 0) {
+        this.price -= 1;
       }
     },
   },
@@ -127,9 +132,9 @@ export default {
   z-index: 9999;
 }
 .dropdown-menu {
-  position: absolute;
+  position: fixed;
   right: 30px;
-  bottom: 100px;
+  bottom: 80px;
   display: flex;
   flex-direction: column-reverse;
 }
@@ -160,6 +165,7 @@ export default {
   align-items: center;
   justify-content: center;
   z-index: 10000;
+  flex-direction: column;
 }
 .modal-content {
   width: 75%;
@@ -272,5 +278,65 @@ font-weight: bold;
   100% {
     transform: translateY(0%);
   }
+}
+.modal-point {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.modal-point h3 {
+  margin-bottom: 10px;
+}
+
+.price-controls {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.price-controls button {
+  background-color: #0517B9;
+  border: none;
+  color: white;
+  font-size: 18px;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.price-controls button:hover {
+  background-color: #FE7B52;
+}
+.price-controls input {
+  width: 60px;
+  text-align: center;
+  margin: 0 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  height: 35px;
+}
+
+.modal-point button {
+  background-color: #0517B9;
+  border: none;
+  color: white;
+  font-size: 16px;
+  padding: 5px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.modal-point button:hover {
+  background-color: #FE7B52;
+}
+
+.price-controls{
+  padding: 20px;
 }
 </style>
