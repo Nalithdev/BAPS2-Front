@@ -3,6 +3,9 @@ import { createStore } from 'vuex';
 export default createStore({
   state: {
     token: null,
+
+    i: null,
+
     shopKinds: [
       {
         id: 1,
@@ -40,6 +43,7 @@ export default createStore({
         icon: 'electronic',
       },
     ],
+
     shops: [
       {
         id: 1,

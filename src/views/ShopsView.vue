@@ -21,6 +21,22 @@ import ShopKind from '@/components/ShopKindComponent.vue';
   components: { Searchbar, ShopMiniature, ShopKind },
 })
 export default class Shops extends Vue {
+
+  mounted() {
+    const url = 'https://main-bvxea6i-rlacwuuwytvt2.fr-4.platformsh.site/api/shops';
+    const shops = new FormData();
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Token: this.$store.state.token,
+      },
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        console.log(data);
+      });
+
   shops: { id: number, kindId: number }[] = [];
 
   beforeMount(): void {

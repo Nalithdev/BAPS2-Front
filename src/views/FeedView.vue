@@ -31,7 +31,6 @@ export default class Feed extends Vue {
   mounted() {
     const url = 'https://main-bvxea6i-rlacwuuwytvt2.fr-4.platformsh.site/api/message';
     const feed = new FormData();
-    console.log(this.$store.state.token);
     fetch(url, {
       method: 'GET',
       headers: {

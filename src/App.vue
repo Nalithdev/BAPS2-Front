@@ -30,6 +30,9 @@ export default class App extends Vue {
   }
 
   mounted(): void {
+    if (this.$store.state.token === null) {
+      this.$router.push('/login');
+    }
     StatusBarArea.setStyle({ style: Style.Light });
     StatusBarArea.getHeight().then((info) => {
       if (info.height) {
