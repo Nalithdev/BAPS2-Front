@@ -2,46 +2,27 @@ import { createStore } from 'vuex';
 
 export default createStore({
   state: {
-
-    token: null,
-
-    i: null,
-
-shopKinds: [
+    token: '?KANDIPNAZNDPIAZNDOKNÄZNDNZANDPAZNDPZADAZ',
+    shopKinds: [
       {
+        name: 'Artisanat',
         id: 1,
-        name: 'Boulangerie',
-        icon: 'baguette',
       },
       {
-        id: 2,
-        name: 'Santé',
-        icon: 'heart-pulse',
-      },
-      {
-        id: 3,
-        name: 'Restauration',
-        icon: 'silverware-fork-knife',
-      },
-      {
-        id: 4,
-        name: 'Fleuriste',
-        icon: 'flower-poppy',
-      },
-      {
-        id: 5,
         name: 'Boucherie',
-        icon: 'food-drumstick',
+        id: 2,
       },
       {
-        id: 6,
-        name: 'Épicerie',
-        icon: 'store',
+        name: 'Chocolaterie',
+        id: 3,
       },
       {
-        id: 7,
-        name: 'Électronique',
-        icon: 'electronic',
+        name: 'Fripes',
+        id: 4,
+      },
+      {
+        name: 'Opticien',
+        id: 5,
       },
       {
         name: 'Epicerie',
@@ -60,7 +41,6 @@ shopKinds: [
         id: 9,
       },
     ],
-
     shops: [
       {
         id: 1,
@@ -74,7 +54,7 @@ shopKinds: [
       {
         id: 2,
         name: 'Borel',
-        kindId: 5,
+        kindId: 2,
         adress: '34 Rue de la Bourgade',
         image: 'shop2.png',
         stars: 3,
@@ -83,7 +63,7 @@ shopKinds: [
       {
         id: 3,
         name: 'Jeff de Bruges',
-        kindId: 6,
+        kindId: 3,
         adress: '13 Rue Pagnole',
         image: 'shop3.png',
         stars: 5,
@@ -101,7 +81,7 @@ shopKinds: [
       {
         id: 5,
         name: 'Krys',
-        kindId: 4,
+        kindId: 5,
         adress: '14 Rue de la Bourgade',
         image: 'shop5.png',
         stars: 3,
@@ -110,7 +90,7 @@ shopKinds: [
       {
         id: 6,
         name: 'Antony Moradon',
-        kindId: 7,
+        kindId: 4,
         adress: '12 Rue César',
         image: 'shop6.png',
         stars: 4,
@@ -118,12 +98,9 @@ shopKinds: [
       },
     ],
   },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  },
+  getters: {},
+  mutations: {},
+  actions: {},
+  modules: {},
 });
+// # sourceMappingURL=index.js.map
