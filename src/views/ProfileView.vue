@@ -34,6 +34,7 @@ import MenuIcon from 'vue-material-design-icons/Menu.vue';
 import FilterVariantIcon from 'vue-material-design-icons/FilterVariant.vue';
 
 @Options({
+
   components: {
     ShopMiniature,
     MenuIcon,
@@ -71,6 +72,15 @@ export default class SignUp extends Vue {
           }
         });
     });
+
+  components: { ShopMiniature, MenuIcon, FilterVariantIcon },
+})
+export default class Profile extends Vue {
+  showParameters = false;
+
+  toggleParameters() {
+    this.showParameters = !this.showParameters;
+
   }
 }
 </script>
@@ -96,6 +106,10 @@ h2.favorites {
   margin: 15px;
 }
 
+.profile {
+    margin-bottom: 30px; /* Ajustez cette valeur en fonction de l'espace souhaité */
+}
+
 .account img {
   width: 110px;
   height: 110px;
@@ -114,6 +128,7 @@ h2.favorites {
 }
 
 .account .right {
+
   display: flex;
   align-items: start;
   justify-content: center;
@@ -121,6 +136,15 @@ h2.favorites {
   gap: 10px;
   font-size: 16px;
   color: #4F5661;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 16px;
+    color: #4F5661;
+
 }
 
 .points {
