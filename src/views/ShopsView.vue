@@ -21,7 +21,6 @@ import ShopKind from '@/components/ShopKindComponent.vue';
   components: { Searchbar, ShopMiniature, ShopKind },
 })
 export default class Shops extends Vue {
-
   mounted() {
     const url = 'https://main-bvxea6i-rlacwuuwytvt2.fr-4.platformsh.site/api/shops';
     const shops = new FormData();
@@ -36,27 +35,6 @@ export default class Shops extends Vue {
       .then((data) => {
         console.log(data);
       });
-
-  shops: { id: number, kindId: number }[] = [];
-
-  beforeMount(): void {
-    this.shops = this.$store.state.shops;
-  }
-
-  enableFilter(kindId: number) {
-    const storeShops: [] = this.$store.state.shops;
-    if (this.shops.length === storeShops.length) {
-      this.shops = storeShops.filter((s: { kindId: number }) => s.kindId === kindId) as [];
-    } else {
-      this.shops.push(...storeShops.filter((s: { kindId: number }) => s.kindId === kindId));
-    }
-  }
-
-  disableFilter(kindId: number) {
-    this.shops = this.shops.filter((s: { kindId: number }) => s.kindId !== kindId) as [];
-    if (this.shops.length === 0) {
-      this.shops = this.$store.state.shops;
-    }
   }
 }
 
