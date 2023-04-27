@@ -1,12 +1,10 @@
 <template>
-    <RouterLink :to="`https://main-bvxea6i-rlacwuuwytvt2.fr-4.platformsh.site/api/shop/${id}`" class="link">
+    <RouterLink :to="`shops/${id}`" class="link">
       <div class="shop-miniature">
-        <img :src="'/uploads/' + shop.image" :alt="shop.name + ' Logo'">
         <div class="right">
-            <h2>{{ shop.name }}</h2>
-            <h3>{{ shopKind.name }}</h3>
+            <h2>{{ shop['name'] }}</h2>
             <div class="last-row">
-              <p>{{ shop.adress }}</p>
+              <p>{{ shop['address'] }}</p>
               <HeartOutlineIcon :size="20" fillColor="#3B434F"/>
             </div>
         </div>
@@ -14,27 +12,28 @@
     </RouterLink>
 </template>
 
-<script lang="ts" scoped>
+<script lang="ts">
 import { Vue, prop, Options } from 'vue-class-component';
 import { RouterLink } from 'vue-router';
 import HeartOutlineIcon from 'vue-material-design-icons/HeartOutline.vue';
 
-export class Props {
-  id: number = prop({ required: true });
-}
-
-@Options({
-  components: { RouterLink, HeartOutlineIcon },
-})
-export default class ShopMiniature extends Vue.with(Props) {
-  get shop() {
-    return this.$store.state.shops[this.id - 1];
-  }
-
-  get shopKind() {
-    return this.$store.state.shopKinds[this.shop.kindId - 1];
-  }
-}
+export default {
+  name: 'ShopMiniature',
+  components: {
+    RouterLink,
+    HeartOutlineIcon,
+  },
+  props: {
+    id: {
+      type: Number,
+      required: true,
+    },
+    shop: {
+      type: Object,
+      required: true,
+    },
+  },
+};
 </script>
 
 <style>
