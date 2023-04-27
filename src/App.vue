@@ -10,7 +10,6 @@
 <script lang="ts">
 import { Vue, Options } from 'vue-class-component';
 import Navbar from '@/components/NavbarComponent.vue';
-import { StatusBarArea, Style } from 'capacitor-status-bar-area';
 
 @Options({
   components: { Navbar },
@@ -27,15 +26,6 @@ export default class App extends Vue {
       '--status-bar-height': `${this.statusBarHeight}px`,
       '--overflow-y': ['login', 'sign-up'].includes(this.page) ? 'hidden' : 'scroll',
     };
-  }
-
-  mounted(): void {
-    StatusBarArea.setStyle({ style: Style.Light });
-    StatusBarArea.getHeight().then((info) => {
-      if (info.height) {
-        this.statusBarHeight = info.height;
-      }
-    });
   }
 }
 </script>
