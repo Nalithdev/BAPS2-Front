@@ -7,7 +7,7 @@ export default createStore({
 
     i: null,
 
-shopKinds: [
+    shopKinds: [
       {
         id: 1,
         name: 'Boulangerie',

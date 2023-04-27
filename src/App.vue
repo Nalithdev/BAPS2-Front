@@ -65,18 +65,6 @@ export default class App extends Vue {
   showUserQrCode() {
     // Mettez votre troisième action ici
     this.showMenu = false;
-
-  mounted(): void {
-    if (this.$store.state.token === null) {
-      this.$router.push('/login');
-    }
-    StatusBarArea.setStyle({ style: Style.Light });
-    StatusBarArea.getHeight().then((info) => {
-      if (info.height) {
-        this.statusBarHeight = info.height;
-      }
-    });
-
   }
 }
 </script>

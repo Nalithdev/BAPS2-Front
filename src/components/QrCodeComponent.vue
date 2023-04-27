@@ -62,7 +62,7 @@ export default {
       this.$nextTick(() => {
         const { token } = this.$store.state;
         const img = this.$el.querySelector('#qrcode');
-        QRCode.toDataURL('some text', { errorCorrectionLevel: 'H' }, (err, url) => {
+        QRCode.toDataURL(token, { errorCorrectionLevel: 'H' }, (err, url) => {
           if (url) img.src = url;
         });
       });
@@ -80,6 +80,19 @@ export default {
               if (result && result.codeResult && result.codeResult.code) {
                 // Do something with the result
               }
+
+              const url = `https://main-bvxea6i-rlacwuuwytvt2.fr-4.platformsh.site/api/getuser/${result}`; // URL de l'API
+              fetch(url, {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json',
+                  Token: this.$store.state.token,
+                },
+              })
+                .then((r) => r.json())
+                .then((data) => {
+                  console.log(data);
+                });
             });
             this.qrScanner.start();
           }
