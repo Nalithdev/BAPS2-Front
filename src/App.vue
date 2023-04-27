@@ -34,7 +34,6 @@ export default class App extends Vue {
       this.$router.push('/login');
     }
     StatusBarArea.setStyle({ style: Style.Light });
-
     StatusBarArea.getHeight().then((info) => {
       if (info.height) {
         this.statusBarHeight = info.height;
@@ -81,7 +80,7 @@ html, body, #app {
 .marginal {
   padding-top: 20px;
   margin-top: 30px;
-  margin-bottom: 70px;
+  padding-bottom: 70px;
 }
 
 .statusbar {
