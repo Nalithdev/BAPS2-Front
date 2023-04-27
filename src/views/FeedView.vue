@@ -14,15 +14,18 @@
       </Status>
     </div>
   </div>
+  <QrCodeComponent/>
 </template>
 
 <script lang="ts">
 import { Vue, Options } from 'vue-class-component';
 import Searchbar from '@/components/SearchbarComponent.vue';
 import Status from '@/components/StatusComponent.vue';
+import QrCodeComponent from '@/components/QrCodeComponent.vue';
 
 @Options({
   components: {
+    QrCodeComponent,
     Searchbar,
     Status,
   },

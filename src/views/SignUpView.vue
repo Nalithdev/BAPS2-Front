@@ -59,13 +59,8 @@ export default class SignUp extends Vue {
 }
 </script>
 
-<style>
-.floating-button {
-  display: none;
-}
-</style>
-
 <style scoped>
+
 img.top {
   position: absolute;
   top: 0;

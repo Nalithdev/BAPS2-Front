@@ -9,10 +9,11 @@
   </div>
   <div class="commerce-info">
     <div class="commerce-info-important">
+      <form action="" class="form-shop">
       <h3>Nom du Commerce</h3>
-      <input type="text" class="name" placeholder="Exemple de Commerce">
+      <input type="text" name="name" class="name" placeholder="Exemple de Commerce">
       <h3>Adresse du Commerce</h3>
-      <input type="text" class="adresse" placeholder="12 rue de l'exemple">
+      <input type="text" name="address" class="adress" placeholder="12 rue de l'exemple">
       <h3>Catégories</h3>
       <select>
         <option value="boulangerie">Boulangerie</option>
@@ -24,7 +25,9 @@
         <option value="electronique">Electronique</option>
       </select>
       <h3>Description</h3>
-      <textarea class="description" placeholder="Description du Commerce"></textarea>
+      <textarea class="description" name="description" placeholder="Description du Commerce">
+      </textarea>
+      </form>
       <h3>Produits</h3>
       <div class="products">
         <div class="products-header">
@@ -76,6 +79,30 @@ export default class Feed extends Vue {
   data() {
     return {
     };
+  }
+  mounted() {
+    const button = document.querySelector('.button-commerce-save') as HTMLButtonElement;
+    if (!button) return;
+    console.log('form detected');
+    button.addEventListener('click', (e: Event) => {
+      e.preventDefault();
+      const formData = new FormData(document.querySelector('.form-shop') as HTMLFormElement);
+      fetch('https://main-bvxea6i-rlacwuuwytvt2.fr-4.platformsh.site/api/shop', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Token: this.$store.state.token,
+        },
+        body: JSON.stringify({
+          name: formData.get('name'),
+          address: formData.get('address'),
+          description: formData.get('description'),
+        }),
+      }).then((r) => r.json())
+        .then((d) => {
+          console.log(d);
+        });
+    });
   }
   previewImage(event: Event) {
     const fileInput = event.target as HTMLInputElement;
