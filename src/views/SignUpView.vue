@@ -41,6 +41,7 @@ export default class SignUp extends Vue {
             password: formData.get('password'),
             firstname: formData.get('prenom'),
             lastname: formData.get('nom'),
+            action: formData.get('merchant') ? 'merchant' : 'customer',
           }),
         })
           .then((res) => res.json())
@@ -48,6 +49,8 @@ export default class SignUp extends Vue {
             console.log(data);
             if (data.status === 'success') {
               this.$router.push('/feed');
+            } else {
+              alert(data.message);
             }
           });
       });
