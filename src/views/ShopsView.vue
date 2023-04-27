@@ -3,7 +3,7 @@
     <Searchbar/>
     <div class="filters">
       <ShopKind v-for="i in $store.state.shopKinds.length - 1" :key="i" :id="i"
-      @enable="enableFilter(i)" @disable="disableFilter(i)"/>
+                @enable="enableFilter(i)" @disable="disableFilter(i)"/>
     </div>
     <div class="shops">
       <ShopMiniature v-for="shop in shops" :key="shop.id" :id="shop.id"/>
@@ -18,9 +18,14 @@ import ShopMiniature from '@/components/ShopMiniatureComponent.vue';
 import ShopKind from '@/components/ShopKindComponent.vue';
 
 @Options({
-  components: { Searchbar, ShopMiniature, ShopKind },
+  components: {
+    Searchbar,
+    ShopMiniature,
+    ShopKind,
+  },
 })
 export default class Shops extends Vue {
+  shops: any;
 
   mounted() {
     const url = 'https://main-bvxea6i-rlacwuuwytvt2.fr-4.platformsh.site/api/shops';
@@ -36,30 +41,35 @@ export default class Shops extends Vue {
       .then((data) => {
         console.log(data);
       });
-
-  shops: { id: number, kindId: number }[] = [];
-
-  beforeMount(): void {
-    this.shops = this.$store.state.shops;
-  }
-
-  enableFilter(kindId: number) {
-    const storeShops: [] = this.$store.state.shops;
-    if (this.shops.length === storeShops.length) {
-      this.shops = storeShops.filter((s: { kindId: number }) => s.kindId === kindId) as [];
-    } else {
-      this.shops.push(...storeShops.filter((s: { kindId: number }) => s.kindId === kindId));
-    }
-  }
-
-  disableFilter(kindId: number) {
-    this.shops = this.shops.filter((s: { kindId: number }) => s.kindId !== kindId) as [];
-    if (this.shops.length === 0) {
-      this.shops = this.$store.state.shops;
-    }
   }
 }
 
+/* shops: { id: number, kindId: number }[] = [];
+
+beforeMount(): void {
+  this.shops = this.$store.state.shops;
+}
+
+enableFilter(kindId: number) {
+  const storeShops: [] = this.$store.state.shops;
+  if (this.shops.length === storeShops.length) {
+    this.shops = storeShops.filter((s: { kindId: number }) => s.kindId === kindId) as [];
+  } else {
+    this.shops.push(...storeShops.filter((s: { kindId: number }) => s.kindId === kindId));
+  }
+}
+
+disableFilter(kindId: number) {
+  this.shops = this.shops.filter((s: { kindId: number }) => s.kindId !== kindId) as [];
+  if (this.shops.length === 0) {
+    this.shops = this.$store.state.shops;
+  }
+}
+}
+
+function enableFilter(kindId: any, number: any) {
+      throw new Error('Function not implemented.');
+  } */
 </script>
 
 <style>
