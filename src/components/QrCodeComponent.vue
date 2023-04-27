@@ -18,9 +18,12 @@
       <div class="modal-content">
         <div id="video-container">
           <!-- eslint-disable-next-line vuejs-accessibility/media-has-caption -->
-          <video ref="video" playsinline autoplay></video>
+          <video ref="video" playsinline autoplay></video>``
+          <div class="scanner-animation"></div>
         </div>
-        <button class="close-button" @click="openScanner = false">Fermer</button>
+        <button class="close-button" @click="openScanner = false">
+          <span class="close-icon">&times;</span>
+        </button>
       </div>
     </div>
   </div>
@@ -45,6 +48,8 @@ export default {
       // #
     },
     showUserQrCode() {
+      /// const Token: string = this.$store.state.token;
+
       // #
     },
     openCamera() {
@@ -57,7 +62,7 @@ export default {
               this.openScanner = false;
               this.qrScanner.stop();
               if (result && result.codeResult && result.codeResult.code) {
-                // Do something with the result
+                // #
               }
             });
             this.qrScanner.start();
@@ -130,27 +135,38 @@ export default {
 .modal-content {
   background-color: white;
   padding: 20px;
-  width: 75%;
+  width: calc(100% - 40px);
+  max-width: 400px;
   border-radius: 4px;
   position: relative;
 }
 #video-container {
-    width: 100%;
-    height: auto;
-  }
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 75%;
+  border: 4px solid #00ff00;
+  box-shadow: 0 0 10px 2px rgba(0, 255, 0, 0.5);
+  border-radius: 4px;
+  overflow: hidden;
+}
 
-  #video-container video {
-    width: 100%;
-    height: auto;
-  }
-  .close-button {
+#video-container video {
   position: absolute;
-  top: 30px;
-  right: 40px;
-  background-color: #FFF;
-  border: 2px solid #FF5A34;
-  border-radius: 10%;
-  width: 80px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  width: 30px;
   height: 30px;
   display: flex;
   justify-content: center;
@@ -158,5 +174,32 @@ export default {
   font-size: 18px;
   color: #FF5A34;
   cursor: pointer;
+  padding: 0;
+}
+.close-icon {
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1;
+}
+.scanner-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid #00ff00;
+  animation: scanner-animation 2s linear infinite;
+}
+
+@keyframes scanner-animation {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
 }
 </style>

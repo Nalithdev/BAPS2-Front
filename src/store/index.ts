@@ -2,7 +2,7 @@ import { createStore } from 'vuex';
 
 export default createStore({
   state: {
-    token: null,
+    token: 'OPUUUFGGOGEGZOGERO575254ititergegegu',
     shopKinds: [
       {
         name: 'Artisanat',
