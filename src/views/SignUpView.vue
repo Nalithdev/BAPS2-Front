@@ -2,8 +2,8 @@
   <div class="page">
     <img src="@/assets/top-wave.svg" alt="An orange wave" class="top">
     <img class="logo" alt="Fid'Anthony logo" src="@/assets/logo.png">
-    <h1>Découvrez &nbsp;<span> Fid'Antony </span>!</h1>
-    <form action="/feed">
+    <h1>Découvrez <span>Fid'Anthony </span>!</h1>
+    <form action="">
       <input type="text" name="email" placeholder="example@gmail.com">
       <input type="text" name="prenom" placeholder="Prenom">
       <input type="text" name="nom" placeholder="Nom">
@@ -27,7 +27,6 @@ import { Vue } from 'vue-class-component';
 
 export default class SignUp extends Vue {
   merchant = false;
-
   mounted() {
     const form = document.querySelector('form');
     if (form) {
@@ -48,7 +47,7 @@ export default class SignUp extends Vue {
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
-            if (data.status === 'success') {
+            if (data.success) {
               this.$router.push('/login');
             } else {
               alert(data.message);
@@ -61,6 +60,7 @@ export default class SignUp extends Vue {
 </script>
 
 <style scoped>
+
 img.top {
   position: absolute;
   top: 0;

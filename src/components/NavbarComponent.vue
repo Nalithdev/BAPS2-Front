@@ -67,7 +67,7 @@ export default class Navbar extends Vue {
   }
 
   handlePressStart() {
-    this.pressTimer = setTimeout(this.showModal, 2000);
+    this.pressTimer = setTimeout(this.showModal, 500);
   }
 
   handlePressEnd() {

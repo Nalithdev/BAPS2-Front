@@ -8,7 +8,6 @@
     :key="$route.fullPath"
   />
   <Navbar v-if="!['login', 'sign-up'].includes(page)" />
-  <QrCodeComponent/>
 </template>
 
 <script lang="ts">
@@ -28,18 +27,15 @@ import {
   from '@fortawesome/free-solid-svg-icons';
 /* eslint-disable import/no-extraneous-dependencies */
 import Navbar from '@/components/NavbarComponent.vue';
-/* eslint-disable import/no-extraneous-dependencies */
-import QrCodeComponent from '@/components/QrCodeComponent.vue';
 
 library.add(faQrcode, faCamera, faCameraRetro, faPlus);
 
 @Options({
-  components: { Navbar, QrCodeComponent, FontAwesomeIcon },
+  components: { Navbar, FontAwesomeIcon },
 })
 export default class App extends Vue {
   public statusBarHeight = 24;
   public showMenu = false;
-
   get page(): string {
     return (this.$route.name ?? this.$route.path.substring(1)).toString();
   }
@@ -52,18 +48,21 @@ export default class App extends Vue {
         : 'scroll',
     };
   }
+  mounted() {
+    if (this.$store.state.token === null) {
+      this.$router.push('/login');
+    }
+  }
 
   openScannerAction() {
     // Mettez votre autre action ici
   }
 
   createPublication() {
-    // Mettez votre autre action ici
     this.showMenu = false;
   }
 
   showUserQrCode() {
-    // Mettez votre troisième action ici
     this.showMenu = false;
   }
 }

@@ -4,10 +4,10 @@
       <span>+</span>
     </div>
     <div class="dropdown-menu" v-if="showMenu">
-      <div class="floating-option" @click="openCamera">
+      <div class="floating-option" @click="openCamera" v-if="isMerchant">
         <i class="fa fa-camera"></i>
       </div>
-      <div class="floating-option" @click="createPublication">
+      <div class="floating-option" @click="createPublication" v-if="isMerchant">
         <i class="fa fa-comments"></i>
       </div>
       <div class="floating-option" @click="showUserQrCode">
@@ -26,13 +26,15 @@
         </div>
       </div>
       <div class="modal-point">
+        <h3>Utilisateur</h3>
+        <p class="user-to-get"></p>
         <h3>Nombres de Points</h3>
         <div class="price-control">
           <button @click="decreasePrice" class="price-button">-</button>
           <input type="number" placeholder="Prix" v-model="price">
           <button @click="increasePrice" class="price-button">+</button>
         </div>
-        <button>Créditer</button>
+        <button @click="sendPoints">Créditer</button>
       </div>
     </div>
     <div class="modal qrcode-modal" v-if="showQrCode">
@@ -55,12 +57,14 @@ import store from '@/store';
 export default {
   data() {
     return {
+      isMerchant: store.state.role === 'ROLE_MERCHANT',
       openScanner: false,
       showMenu: false,
       qrScanner: null,
       showQrCode: false,
       qrCodeInstance: null,
       price: 0,
+      idToSend: null,
     };
   },
   methods: {
@@ -72,7 +76,7 @@ export default {
       this.$nextTick(() => {
         const { token } = this.$store.state;
         const img = this.$el.querySelector('#qrcode');
-        QRCode.toDataURL('some text', { errorCorrectionLevel: 'H' }, (err, url) => {
+        QRCode.toDataURL(token, { errorCorrectionLevel: 'H' }, (err, url) => {
           if (url) img.src = url;
         });
       });
@@ -85,11 +89,22 @@ export default {
           if (videoEl) {
             this.qrScanner = new QrScanner(videoEl, (result) => {
               console.log(result);
-              this.openScanner = false;
               this.qrScanner.stop();
-              if (result && result.codeResult && result.codeResult.code) {
-                // Do something with the result
-              }
+              // check the token with server
+              fetch(`https://main-bvxea6i-rlacwuuwytvt2.fr-4.platformsh.site/api/getuser/${result}`, {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json',
+                  Token: this.$store.state.token,
+                },
+              }).then((response) => response.json())
+                .then((data) => {
+                  console.log(data);
+                  if (data.success) {
+                    this.$el.querySelector('.user-to-get').innerHTML = `${data.user.firstname} ${data.user.lastname}`;
+                    this.idToSend = data.user.id;
+                  }
+                });
             });
             this.qrScanner.start();
           }
@@ -104,6 +119,30 @@ export default {
     decreasePrice() {
       if (this.price > 0) {
         this.price -= 1;
+      }
+    },
+    sendPoints() {
+      if (this.idToSend) {
+        console.log(this.price);
+        fetch(`https://main-bvxea6i-rlacwuuwytvt2.fr-4.platformsh.site/api/point/${this.idToSend}/add `, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Token: this.$store.state.token,
+          },
+          body: JSON.stringify({
+            points: this.price,
+          }),
+        }).then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            if (data.success) {
+              this.$el.querySelector('.user-to-get').innerHTML = '';
+              this.idToSend = null;
+              this.price = 0;
+              this.openScanner = false;
+            }
+          });
       }
     },
   },

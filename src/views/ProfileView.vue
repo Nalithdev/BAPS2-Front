@@ -14,7 +14,7 @@
         </form>
         <div class="points">
           <div class="circle"></div>
-          <p>1000 pts</p>
+          <p><span id="point-amount">0</span> pts</p>
         </div>
       </div>
     </div>
@@ -49,6 +49,26 @@ export default class Profile extends Vue {
   }
 
   mounted() {
+    // Fetching points
+    fetch(`https://main-bvxea6i-rlacwuuwytvt2.fr-4.platformsh.site/api/point/${this.$store.state.i}/add `, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Token: this.$store.state.token,
+      },
+      body: JSON.stringify({
+        points: 0,
+      }),
+    }).then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.success) {
+          const points = document.querySelector('#point-amount');
+          if (!points) return;
+          points.innerHTML = data.points;
+        }
+      });
+    // Handling modifications
     const url = 'https://main-bvxea6i-rlacwuuwytvt2.fr-4.platformsh.site/api/user/modify';
     const form: HTMLFormElement | null = document.querySelector('form');
     if (!form) return;

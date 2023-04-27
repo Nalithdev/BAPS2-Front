@@ -4,8 +4,9 @@ export default createStore({
   state: {
 
     token: null,
-
+    server_url: 'https://main-bvxea6i-rlacwuuwytvt2.fr-4.platformsh.site',
     i: null,
+    role: null,
 
     shopKinds: [
       {
@@ -60,7 +61,6 @@ export default createStore({
         id: 9,
       },
     ],
-
     shops: [
       {
         id: 1,
