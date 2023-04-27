@@ -36,6 +36,7 @@ export default class Shops extends Vue {
         console.log(data);
       });
 
+
   /* shops: { id: number, kindId: number }[] = [];
 
   beforeMount(): void {
@@ -57,6 +58,7 @@ export default class Shops extends Vue {
       this.shops = this.$store.state.shops;
     }
   } */
+
   }
 }
 
