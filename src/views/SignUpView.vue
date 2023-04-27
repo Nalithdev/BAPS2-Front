@@ -2,7 +2,7 @@
   <div class="page">
     <img src="@/assets/top-wave.svg" alt="An orange wave" class="top">
     <img class="logo" alt="Fid'Anthony logo" src="@/assets/logo.png">
-    <h1>Découvrez <span>Fid'Anthony </span>!</h1>
+    <h1>Découvrez &nbsp;<span> Fid'Antony </span>!</h1>
     <form action="/feed">
       <input type="text" name="email" placeholder="example@gmail.com">
       <input type="text" name="prenom" placeholder="Prenom">
@@ -41,13 +41,17 @@ export default class SignUp extends Vue {
             password: formData.get('password'),
             firstname: formData.get('prenom'),
             lastname: formData.get('nom'),
+            action: this.$el.querySelector('#merchant').checked ? 'shop' : 'user',
+            siren: formData.get('siren'),
           }),
         })
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
             if (data.status === 'success') {
-              this.$router.push('/feed');
+              this.$router.push('/login');
+            } else {
+              alert(data.message);
             }
           });
       });

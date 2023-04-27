@@ -106,7 +106,7 @@ html, body, #app {
 .marginal {
   padding-top: 20px;
   margin-top: 30px;
-  margin-bottom: 70px;
+  padding-bottom: 70px;
 }
 
 .statusbar {

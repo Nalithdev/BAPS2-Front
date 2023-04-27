@@ -14,16 +14,22 @@
         <i class="fa fa-qrcode"></i>
       </div>
     </div>
-    <div class="modal" v-if="openScanner">
-      <div class="modal-content">
+    <div class="modal camera-modal" v-if="openScanner">
+      <div class="camera-modal-content">
         <div id="video-container">
           <!-- eslint-disable-next-line vuejs-accessibility/media-has-caption -->
-          <video ref="video" playsinline autoplay></video>``
+          <video ref="video" playsinline autoplay></video>
           <div class="scanner-animation"></div>
         </div>
-        <button class="close-button" @click="openScanner = false">
-          <span class="close-icon">&times;</span>
-        </button>
+        <div class="scanqrcode-modal-content">
+          <button class="close-button" @click="openScanner = false">Fermer</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal qrcode-modal" v-if="showQrCode">
+      <div class="qrcode-modal-content">
+        <div class="close-button" @click="showQrCode = false">&#10005;</div>
+        <img id="qrcode" src="" alt="QR Code">
       </div>
     </div>
   </div>
@@ -34,6 +40,8 @@
 import QrScanner from 'qr-scanner';
 /* eslint-disable import/no-extraneous-dependencies */
 import 'qr-scanner/qr-scanner-worker.min';
+import QRCode from 'qrcode';
+import store from '@/store';
 
 export default {
   data() {
@@ -41,6 +49,8 @@ export default {
       openScanner: false,
       showMenu: false,
       qrScanner: null,
+      showQrCode: false,
+      qrCodeInstance: null,
     };
   },
   methods: {
@@ -48,22 +58,41 @@ export default {
       // #
     },
     showUserQrCode() {
-      /// const Token: string = this.$store.state.token;
-
-      // #
+      this.showQrCode = true;
+      this.$nextTick(() => {
+        const { token } = this.$store.state;
+        const img = this.$el.querySelector('#qrcode');
+        QRCode.toDataURL(token, { errorCorrectionLevel: 'H' }, (err, url) => {
+          if (url) img.src = url;
+        });
+      });
     },
     openCamera() {
       this.openScanner = true;
       if (!this.qrScanner) {
         this.$nextTick(() => {
-          if (this.$refs.video) {
-            this.qrScanner = new QrScanner(this.$refs.video, (result) => {
+          const videoEl = document.getElementsByTagName('video')[0];
+          if (videoEl) {
+            this.qrScanner = new QrScanner(videoEl, (result) => {
               console.log(result);
               this.openScanner = false;
               this.qrScanner.stop();
               if (result && result.codeResult && result.codeResult.code) {
-                // #
+                // Do something with the result
               }
+
+              const url = `https://main-bvxea6i-rlacwuuwytvt2.fr-4.platformsh.site/api/getuser/${result}`; // URL de l'API
+              fetch(url, {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json',
+                  Token: this.$store.state.token,
+                },
+              })
+                .then((r) => r.json())
+                .then((data) => {
+                  console.log(data);
+                });
             });
             this.qrScanner.start();
           }
@@ -133,53 +162,96 @@ export default {
   z-index: 10000;
 }
 .modal-content {
-  background-color: white;
-  padding: 20px;
-  width: calc(100% - 40px);
-  max-width: 400px;
+  width: 75%;
   border-radius: 4px;
   position: relative;
 }
-#video-container {
-  position: relative;
-  width: 100%;
-  height: 0;
-  padding-bottom: 75%;
-  border: 4px solid #00ff00;
-  box-shadow: 0 0 10px 2px rgba(0, 255, 0, 0.5);
+.camera-modal-content {
+  width: 75%;
   border-radius: 4px;
+  position: relative;
   overflow: hidden;
+  border: 5px solid #3cff00;
+  width: 75%;
 }
-
-#video-container video {
-  position: absolute;
-  top: 0;
-  left: 0;
+.qrcode-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.qrcode-modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.qrcode-modal-content img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  max-width: 250px;
+  max-height: 250px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+.qrcode-modal-content .close-button {
+  margin-top: 20px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 0;
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.qrcode-modal-content .close-button:before {
+  content: "\00D7";
+  font-size: 25px;
+  font-weight: bold;
+  color: #FF5A34;
+}
+.qrcode-modal-content img {
+  width: 100%;
+  height: 100%;
+  max-width: 250px;
+  max-height: 250px;
+  object-fit: contain;
+}
+.qrcode-modal-content .close-button {
+  margin-top: 20px;
+}
+#video-container {
+    width: 100%;
+    height: auto;
+  }
+#video-container video {
+    width: 100%;
+    height: auto;
 }
 .close-button {
   position: absolute;
-  top: 15px;
-  right: 15px;
-  background-color: rgba(255, 255, 255, 0.8);
+  top: 10px;
+  right: 10px;
   border: none;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 18px;
+  background: none;
+  width: 25px;
+  height: 25px;
+  font-size: 0px;
   color: #FF5A34;
   cursor: pointer;
-  padding: 0;
 }
-.close-icon {
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 1;
+
+.close-button::before {
+content: "×";
+font-family: Arial, sans-serif;
+font-size: 20px;
+font-weight: bold;
 }
 .scanner-animation {
   position: absolute;
@@ -190,7 +262,6 @@ export default {
   border: 2px solid #00ff00;
   animation: scanner-animation 2s linear infinite;
 }
-
 @keyframes scanner-animation {
   0% {
     transform: translateY(0%);

@@ -2,27 +2,46 @@ import { createStore } from 'vuex';
 
 export default createStore({
   state: {
-    token: 'OPUUUFGGOGEGZOGERO575254ititergegegu',
+
+    token: null,
+
+    i: null,
+
     shopKinds: [
       {
-        name: 'Artisanat',
         id: 1,
+        name: 'Boulangerie',
+        icon: 'baguette',
       },
       {
-        name: 'Boucherie',
         id: 2,
+        name: 'Santé',
+        icon: 'heart-pulse',
       },
       {
-        name: 'Chocolaterie',
         id: 3,
+        name: 'Restauration',
+        icon: 'silverware-fork-knife',
       },
       {
-        name: 'Fripes',
         id: 4,
+        name: 'Fleuriste',
+        icon: 'flower-poppy',
       },
       {
-        name: 'Opticien',
         id: 5,
+        name: 'Boucherie',
+        icon: 'food-drumstick',
+      },
+      {
+        id: 6,
+        name: 'Épicerie',
+        icon: 'store',
+      },
+      {
+        id: 7,
+        name: 'Électronique',
+        icon: 'electronic',
       },
       {
         name: 'Epicerie',
@@ -41,6 +60,7 @@ export default createStore({
         id: 9,
       },
     ],
+
     shops: [
       {
         id: 1,
@@ -54,7 +74,7 @@ export default createStore({
       {
         id: 2,
         name: 'Borel',
-        kindId: 2,
+        kindId: 5,
         adress: '34 Rue de la Bourgade',
         image: 'shop2.png',
         stars: 3,
@@ -63,7 +83,7 @@ export default createStore({
       {
         id: 3,
         name: 'Jeff de Bruges',
-        kindId: 3,
+        kindId: 6,
         adress: '13 Rue Pagnole',
         image: 'shop3.png',
         stars: 5,
@@ -81,7 +101,7 @@ export default createStore({
       {
         id: 5,
         name: 'Krys',
-        kindId: 5,
+        kindId: 4,
         adress: '14 Rue de la Bourgade',
         image: 'shop5.png',
         stars: 3,
@@ -90,7 +110,7 @@ export default createStore({
       {
         id: 6,
         name: 'Antony Moradon',
-        kindId: 4,
+        kindId: 7,
         adress: '12 Rue César',
         image: 'shop6.png',
         stars: 4,
