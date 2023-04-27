@@ -2,7 +2,7 @@
   <div class="page">
     <img src="@/assets/top-wave.svg" alt="An orange wave" class="top">
     <img class="logo" alt="Fid'Anthony logo" src="@/assets/logo.png">
-    <h1>Bon retour <span>parmis nous </span>!</h1>
+    <h1>Bon retour &nbsp;<span> parmis nous</span>!</h1>
     <form action="">
       <input type="mail" name="email" placeholder="example@gmail.com">
       <input type="password" name="password" placeholder="Mot de passe">
@@ -15,7 +15,6 @@
     <p>
       Pas de compte ? <router-link to="/">Inscrivez vous</router-link>
     </p>
-    <img src="@/assets/bottom-wave.svg" alt="An orange wave" class="bottom">
   </div>
 </template>
 
@@ -46,7 +45,7 @@ export default class LogIn extends Vue {
             console.log(data);
           } else {
             this.$store.state.token = data.token.tokenId;
-            console.log(data);
+            this.$store.state.i = data.id;
             console.log(this.$store.state.token);
             this.$router.push('/feed');
           }
