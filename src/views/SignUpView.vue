@@ -41,13 +41,17 @@ export default class SignUp extends Vue {
             password: formData.get('password'),
             firstname: formData.get('prenom'),
             lastname: formData.get('nom'),
+            action: this.$el.querySelector('#merchant').checked ? 'shop' : 'user',
+            siren: formData.get('siren'),
           }),
         })
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
             if (data.status === 'success') {
-              this.$router.push('/feed');
+              this.$router.push('/login');
+            } else {
+              alert(data.message);
             }
           });
       });

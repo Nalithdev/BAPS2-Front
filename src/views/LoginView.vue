@@ -2,7 +2,7 @@
   <div class="page">
     <img src="@/assets/top-wave.svg" alt="An orange wave" class="top">
     <img class="logo" alt="Fid'Anthony logo" src="@/assets/logo.png">
-    <h1>Bon retour &nbsp;<span> parmis nous</span>!</h1>
+    <h1>Bon retour &nbsp;<span> parmi nous</span>!</h1>
     <form action="">
       <input type="mail" name="email" placeholder="example@gmail.com">
       <input type="password" name="password" placeholder="Mot de passe">

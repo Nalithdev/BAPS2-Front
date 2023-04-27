@@ -41,7 +41,13 @@ import FilterVariantIcon from 'vue-material-design-icons/FilterVariant.vue';
     FilterVariantIcon,
   },
 })
-export default class SignUp extends Vue {
+export default class Profile extends Vue {
+  showParameters = false;
+
+  toggleParameters() {
+    this.showParameters = !this.showParameters;
+  }
+
   mounted() {
     const url = 'https://main-bvxea6i-rlacwuuwytvt2.fr-4.platformsh.site/api/user/modify';
     const form: HTMLFormElement | null = document.querySelector('form');
@@ -72,15 +78,6 @@ export default class SignUp extends Vue {
           }
         });
     });
-
-  components: { ShopMiniature, MenuIcon, FilterVariantIcon },
-})
-export default class Profile extends Vue {
-  showParameters = false;
-
-  toggleParameters() {
-    this.showParameters = !this.showParameters;
-
   }
 }
 </script>
