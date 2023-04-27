@@ -1,10 +1,10 @@
 <template>
-    <RouterLink :to="`/shops/${id}`" class="link">
+    <RouterLink :to="`https://main-bvxea6i-rlacwuuwytvt2.fr-4.platformsh.site/api/shop/${id}`" class="link">
       <div class="shop-miniature">
         <img :src="'/uploads/' + shop.image" :alt="shop.name + ' Logo'">
         <div class="right">
             <h2>{{ shop.name }}</h2>
-            <h3>{{ shop.kind }}</h3>
+            <h3>{{ shopKind.name }}</h3>
             <div class="last-row">
               <p>{{ shop.adress }}</p>
               <HeartOutlineIcon :size="20" fillColor="#3B434F"/>
@@ -29,6 +29,10 @@ export class Props {
 export default class ShopMiniature extends Vue.with(Props) {
   get shop() {
     return this.$store.state.shops[this.id - 1];
+  }
+
+  get shopKind() {
+    return this.$store.state.shopKinds[this.shop.kindId - 1];
   }
 }
 </script>

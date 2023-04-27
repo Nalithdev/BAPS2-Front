@@ -8,12 +8,16 @@
       <input type="text" name="prenom" placeholder="Prenom">
       <input type="text" name="nom" placeholder="Nom">
       <input type="password" name="password" placeholder="Mot de passe">
-      <input type="password" name="password-confirm" placeholder="Mot de passe">
+      <input type="password" name="password-confirm" placeholder="Confirmer mot de passe">
+      <input type="text" name="siren" placeholder="N° de SIREN" v-if="merchant" >
+      <label for="merchant">
+        <input type="checkbox" name="merchant" id="merchant" v-model="merchant">
+        Je suis commerçant
+      </label>
       <button type="submit">S'inscrire</button>
     </form>
     <p>
-      Déjà un compte ? <router-link to="login">Connectez vous</router-link><br>
-      <router-link to="/">Je suis commerçant</router-link>
+      Déjà un compte ? <router-link to="login">Connectez vous</router-link>
     </p>
   </div>
 </template>
@@ -22,29 +26,30 @@
 import { Vue } from 'vue-class-component';
 
 export default class SignUp extends Vue {
+  merchant = false;
   mounted() {
-    document.title = 'Fid\'Anthony - Inscription';
-    const form : HTMLFormElement|null = document.querySelector('form');
+    const form = document.querySelector('form');
     if (form) {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
-        // convert form data to json with typescript
         const formData = new FormData(form);
-        fetch(`${this.$store.state.server_url}/api/register`, {
+        fetch('https://main-bvxea6i-rlacwuuwytvt2.fr-4.platformsh.site/api/register', {
           method: 'POST',
           body: JSON.stringify({
             email: formData.get('email'),
+            password: formData.get('password'),
             firstname: formData.get('prenom'),
             lastname: formData.get('nom'),
-            password: formData.get('password'),
+            action: this.$el.querySelector('#merchant').checked ? 'shop' : 'user',
+            siren: formData.get('siren'),
           }),
         })
-          .then((response) => response.json())
+          .then((res) => res.json())
           .then((data) => {
-            if (data.success === true) {
+            console.log(data);
+            if (data.success) {
               this.$router.push('/login');
             } else {
-              // eslint-disable-next-line no-alert
               alert(data.message);
             }
           });
@@ -53,6 +58,12 @@ export default class SignUp extends Vue {
   }
 }
 </script>
+
+<style>
+.floating-button {
+  display: none;
+}
+</style>
 
 <style scoped>
 img.top {
@@ -145,5 +156,15 @@ button::after {
      linear-gradient(#fff 0 0) content-box,
      linear-gradient(#fff 0 0);
   mask-composite: exclude;
+}
+
+label {
+  width: 100%;
+  color: #3B434F;
+  font-size: 12px;
+}
+
+input[type="checkbox"] {
+  margin-right: 2px;
 }
 </style>

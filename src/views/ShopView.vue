@@ -4,7 +4,9 @@
       <ChevronLeftIcon @click="$router.go(-1)" fillColor="#fff" size="30"/>
       <img :src="`/uploads/${shop.banner}`" :alt="shop.name" class="background">
       <div class="gradient"></div>
-      <h1>{{ shop.name }} <div class="stars" :style="cssVars"></div></h1>
+      <h1>{{ shop.name }}
+        <div class="stars" :style="cssVars"></div>
+      </h1>
       <h4>{{ shop.adress }}</h4>
       <ArrowRightTopBoldIcon class="arrow" fillColor="#fff"/>
     </div>
@@ -34,7 +36,7 @@
       <div class="proximity">
         <h3>Activités à proximité</h3>
         <div class="shops">
-            <ShopMiniature v-for="i in 5" :key="i" :id="i + 1" />
+          <ShopMiniature v-for="i in 5" :key="i" :id="i + 1"/>
         </div>
       </div>
     </div>
@@ -47,8 +49,6 @@ import ChevronLeftIcon from 'vue-material-design-icons/ChevronLeft.vue';
 import ArrowRightTopBoldIcon from 'vue-material-design-icons/ArrowRightTopBold.vue';
 import { RouterLink } from 'vue-router';
 import ShopMiniature from '@/components/ShopMiniatureComponent.vue';
-
-window.scrollTo({ top: 0 });
 
 @Options({
   components: {
@@ -197,6 +197,7 @@ export default class Shop extends Vue {
   display: inline-block;
   --limit: calc(var(--stars) * 20%);
 }
+
 .stars::before {
   letter-spacing: 3px;
   content: '★★★★★';

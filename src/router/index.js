@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 import SignUp from '@/views/SignUpView.vue';
 import LogIn from '@/views/LoginView.vue';
 import Feed from '@/views/FeedView.vue';
@@ -7,7 +7,7 @@ import Shops from '@/views/ShopsView.vue';
 import Profile from '@/views/ProfileView.vue';
 import Commerce from '@/views/CommerceView.vue';
 
-const routes: Array<RouteRecordRaw> = [
+const routes = [
   {
     path: '/',
     name: 'sign-up',
@@ -44,10 +44,9 @@ const routes: Array<RouteRecordRaw> = [
     component: Commerce,
   },
 ];
-
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
-
 export default router;
+// # sourceMappingURL=index.js.map
