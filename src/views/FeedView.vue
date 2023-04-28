@@ -2,11 +2,11 @@
   <div>
     <Searchbar/>
     <div class="feed">
-      <Status v-for="i in 10" :key="i" name="A la bonne Franco"
+      <Status v-for="i in 10" :key="i" name="Boulangerie Sympa"
               kind="Boulangerie" logo="shop1.png" image="status1.png">
         <p>
-          Dans la boulangerie "A la bonne Franco", nous proposons des spécialités
-          Espagnoles tout à fait goûteuses! Nous sommes profondément écologiques
+          Dans la boulangerie "Boulangerie Sympa", nous proposons toutes les meilleures
+          viennoiseries et du pain de qualité. Nous sommes profondément écologiques
           dans nos créations culinaires.<br>
           <br>
           Tout nos produits sont garantits sans glutens ni produits d'origine animale.

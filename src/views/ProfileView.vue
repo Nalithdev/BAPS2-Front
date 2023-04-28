@@ -18,12 +18,6 @@
         </div>
       </div>
     </div>
-    <div class="favorites">
-      <h2 class="favorites"><span>Favoris</span>
-        <FilterVariantIcon fillColor="#4F5661"/>
-      </h2>
-      <ShopMiniature v-for="i in 5" :key="i" :id="i + 1"/>
-    </div>
   </div>
 </template>
 
@@ -36,7 +30,6 @@ import FilterVariantIcon from 'vue-material-design-icons/FilterVariant.vue';
 @Options({
 
   components: {
-    ShopMiniature,
     MenuIcon,
     FilterVariantIcon,
   },
